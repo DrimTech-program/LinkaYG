@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="zh-cmn-Hans">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.7, maximum-scale=0.7, user-scalable=0">
+	<meta content="telephone=no" name="format-detection">
+
+	<title>[DrimTech]/ 林桛杨高</title>
+	<meta name="Description" content="林桛杨高 LinkaYG">
+	<link rel="manifest" href="manifest.json">
+	<meta name="theme-color" content="#202124">
+	<link rel="apple-touch-icon" href="/plugins/img/icon_512_big_b.png" sizes="512x512">
+
+	<!-- 基础样式 -->
+	<link rel="stylesheet" href="/plugins/cake.css?v=1.96">
+	<link rel="stylesheet" href="cake/ui.css?v=0.1.2">
+
+	<!-- 功能库 -->
+	<script type="text/javascript" src="cake/lib/main.lib.js?v=0.1.2"></script>
+	<script type="text/javascript" src="cake/lib/lib.js?v=0.1.2"></script>
+	<!-- 初始化程序 -->
+	<script type="text/javascript" src="cake/starter.js?v=0.1.2"></script>
+	<script type="text/javascript" src="cake/event.js?v=0.1.2"></script>
+	<!-- 主程序 -->
+	<script type="text/javascript" src="cake/main.js?v=0.1.2"></script>
+	<!-- 流 -->
+	<script type="text/javascript" src="cake/flow/ui.js?v=0.1.2"></script>
+
+	<!-- 动态加载资源, 从 ./LinkaC.json -->
+</head>
+<body>
+	<div id="main" style="opacity: 0;">
+
+		<!-- 场景层 -->
+		<div id="background" class="moveFollowLayer">
+			<img alt="map" 
+				src="cake/map/map.svg"
+				style="position: absolute;
+					left: -10000px;
+					top: -1875px;
+					width: 10000px;  /* 显著增大地图尺寸 */
+					height: auto;   /* 保持宽高比 */
+					z-index: 10;">
+			<div style="left: -295px; top: 0; width: 1000px; height: 0px; border-top: 4px dashed var(--c);transform: scalex(5) rotate(180deg);transform-origin: 0;"></div>
+
+			<div style="left: 0; top: 0;">
+				<p style="margin: 0; line-height: 0px;"><- <span style="padding: 2px 7px; background-color: #000; color: #fff;">重生点</span></p>
+			</div>
+
+			<div style="left: -187px; top: -133px;">
+				<p>如果无法正常使用, 请按下 Ctrl+F5 或清除浏览器缓存</p>
+				<p>支持移动端! 请使用<b>正常</b>的<b>新版本</b>浏览器访问</p>
+			</div>
+
+			<div style="left: 81px; top: 0px; margin: 0 50px;">
+				<p style="margin: 0;">PC 端操作方式: </p>
+				<p>[W]: 向前移动</p>
+				<p>[S]: 向后移动</p>
+				<p>[A]: 向左移动</p>
+				<p>[D]: 向右移动</p>
+				<p>[T][Backspace]: 打开聊天界面</p>
+				<p>[Tab]: 显示实体列表</p>
+				<p>[ESC]: 关闭当前组件</p>
+				<p>[Enter][Space]: 确认/选中</p>
+				<p>[F3]: 显示调试信息(PC)</p>
+
+				<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+				<br />
+			</div>
+
+			<!-- <div id="logo-en" class="logo -en" title="logo-en">LinkaYG</div> -->
+			<div id="logo-en" class="logo -en" title="logo-en" style="left: 399px; top: 0px;">LinkaYG</div>
+			<!-- <div id="logo-zh" class="logo -zh" title="logo-zh">林桛杨高</div> -->
+			<div id="logo-zh" class="logo -zh" title="logo-zh" style="left: 1100px; top: 0px;">林桛杨高</div>
+
+
+			<div style="left: 399px; top: 190px; margin: 20px; margin-left: 0;">
+				<p>林桛杨高<!-- <a href="https://github.com/DrimTech-program/LinkaYG">Github</a> --></p>
+
+				<br /><br /><br />
+				<p>参与者：</p>
+			</div>
+		</div>
+
+		<!-- 玩家层 -->
+		<div id="all-player" class="moveFollowLayer"></div>
+
+		<!-- TPSBAR -->
+		<div id="tpsbar">
+			<p>TPS: <span class="_tps"></span>&nbsp;&nbsp; MSPT: <span class="_mspt"></span>&nbsp;&nbsp; PING: <span class="_ping"></span>ms</p>
+			<div><div class="a"></div></div>
+		</div>
+
+		<!-- 聊天组件 -->
+		<div id="message" class="">
+			<!-- 聊天内容框 -->
+			<div id="message-list" class="--user_select"></div>
+
+			<!-- 输入框背景div, 发送按钮, 输入框 -->
+			<div class="message_input_bc">
+				<button class="btn" onclick="$e.ui.emit('message.send_key');">发送</button>
+			</div>
+			<input id="message-input" maxlength="2048" />
+		</div>
+
+		<!-- 玩家选择消息 -->
+		<div id="decision" title="点击或使用[W][S]键选择, 点击确认键即可提交"></div>
+
+		<!-- 窗口动效层 -->
+		<div id="_window"></div>
+
+		<!-- 插件dom默认位置 -->
+		<div id="_plugins" class="plugins"></div>
+	</div>
+</body>
+</html>

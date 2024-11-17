@@ -1,0 +1,244 @@
+body{
+	background-image: linear-gradient(90deg, rgba(180, 180, 180, 0.15) 5%, rgba(0, 0, 0, 0) 5%),linear-gradient(rgba(180, 180, 180, 0.15) 5%, rgba(0, 0, 0, 0) 5%);
+	background-size: 47px 47px;
+
+	/* 防止滚动, 对Safari无效 */
+	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: auto;
+	position: fixed;
+
+	/* 禁用webkit内核浏览器文字大小调整功能: 解决Safari文字大小不统一 */
+	-webkit-text-size-adjust: none;
+
+	/* 禁止选中文本, 因为双指操作会触发各种选中 */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+
+	/* 实验性性能提升, 已知对大量dom无效 */
+	transition: width 0s, height 0s;
+	width: 100%;
+	height: 100vh;
+	content-visibility: auto;
+
+	/* 全局变量 */
+	--message_list_max_height: min(70vh, 640px); /* #message.-open > #message-list 的最大高度 */
+}
+
+.--user_select{
+	-webkit-touch-callout: text;
+	-webkit-user-select: text;
+	user-select: text;
+}
+
+/* 窗口dom */
+#_window{
+	width: 100%;
+	height: 100vh;
+}
+
+.moveFollowLayer{
+	/* width: max-content; */
+	position: absolute;
+	transition: all 1600ms cubic-bezier(0, 0.6, 0.64, 1);
+}
+.moveFollowLayer > div{
+	position: absolute;
+	width: max-content;
+}
+@keyframes opacity_fadeIn{
+	0%{opacity: 0}
+	100%{opacity: 1}
+}
+/* @keyframes bottom_to_top_translate{
+	0%{transform: translate(0, 50px)}
+	100%{transform: translate(0, 0px)}
+} */
+#all-player{
+	z-index: 20;
+}
+#all-player > div > *{
+	content-visibility: auto;
+}
+#background{
+	/* z-index: 10; */
+	animation: 1s opacity_fadeIn;
+}
+/* !!实验性提升性能!! css实体剔除 */
+#background > div > *{
+	/* content-visibility: auto; */
+}
+#background.-debug *{
+	outline: solid 1px rgb(0, 238, 255);
+}
+#background.-debug *.---within{
+	outline: solid 1px rgb(255, 0, 0);
+}
+#background.-debug > *{
+	outline: solid 1px rgb(0, 34, 255);
+}
+#background .logo{
+	display: inline-block;
+	font-family: 'JetBrainsMono', 'HarmonyOS';
+	transform-origin: 0;
+	transform: scale(1, 1);
+	font-size: 160px;
+	line-height: 145px;
+	height: 145px;
+	margin: 0 45px 45px 0;
+	color: #272727;
+	transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#background .logo::before{
+	content: "";
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	background: repeating-linear-gradient(135deg, #5dccff47, #5dccff47 10%, transparent 0, transparent 15%);
+}
+#background .logo::after{
+	content: attr(title);
+	position: absolute;
+	top: -27px;
+	right: 0;
+	width: 100%;
+	font-size: 32px;
+	line-height: 0;
+}
+
+/* 实体移动动效 */
+#all-player > .entity{
+	transition: all 0.4s cubic-bezier(0, 0, 0.2, 1);
+	animation: 0.7s opacity_fadeIn;
+}
+#all-player > .entity.my{
+	transition: all 400ms cubic-bezier(0, 0.1, 0, 1);
+}
+
+/* 实体碰撞箱 */
+#all-player > .entity{
+	left: 0;
+	top: 0;
+	min-width: 50px;
+	max-width: 50px;
+	min-height: 50px;
+	max-height: 50px;
+	margin: -25px;
+	display: inline;
+	position: absolute;
+}
+#all-player > .entity[data-type="player"]{
+	outline: solid 1px rgb(30, 255, 0);
+}
+#all-player > .entity[data-type="npc"]{
+	outline: solid 1px rgb(0, 170, 255);
+}
+#all-player > .entity[data-type="npc2"]{
+	outline: solid 1px rgb(0, 170, 255);
+}
+#all-player > .entity[data-type="mob"]{
+	outline: solid 1px rgb(255, 0, 255);
+}
+
+/* 实体顶部文本框 */
+#all-player > .entity > .top_text{
+	position: absolute;
+	width: max-content;
+	transform: translate(-50%, -100%);
+	text-align: center;
+	margin: -7px 25px;
+	font-size: 14px;
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: center;
+}
+#all-player > .entity > .top_text > span{ /* 名称和对话消息的样式 */
+	width: max-content;
+	height: 21px;
+	background-color: rgb(0 0 0 / 47%);
+	color: #fff;
+	padding: 2px 7px 0 7px;
+	margin-top: 7px;
+	display: flex;
+}
+/* #all-player > .entity > .top_text > .name > .img{
+	position: absolute;
+	bottom: 0;
+	margin-left: -32px;
+	width: 21px;
+	height: 21px;
+	background-size: cover;
+	image-rendering: pixelated;
+} */
+@keyframes top_text_join{
+	0% {
+		opacity: 0;
+		margin-bottom: -30px;
+	}
+	100% {
+		opacity: 1;
+		margin-bottom: 0;
+	}
+}
+@keyframes top_text_quit{
+	0% {
+		opacity: 1;
+		margin-bottom: 0;
+	}
+	100% {
+		opacity: 0;
+		margin-bottom: -30px;
+	}
+}
+#all-player > .entity > .top_text > span{
+	animation: 0.4s top_text_join forwards;
+}
+#all-player > .entity > .top_text > span.-quit{
+	animation: 0.4s top_text_quit forwards;
+}
+#all-player > .entity > .top_text > span.-noBackground{
+	background-color: transparent;
+}
+
+
+
+/* DEBUG DOM 默认样式 */
+#all-player > .entity > .debug{
+	position: absolute;
+	margin: 25px; /* (100 - 50) / 2 */
+	width: 100px;
+	height: 1px;
+	transform-origin: 0 0;
+	transition: all .2s cubic-bezier(0, 1, 1, 1);
+	opacity: 0;
+}
+#all-player.-debug > .entity > .debug{
+	opacity: 1;
+}
+/* 实体偏航角 */
+#all-player > .entity > .debug.yawAngle{
+	transform: rotate(0deg);
+	background: rgb(0, 51, 255);
+}
+/* 实体攻击范围 */
+#all-player > .entity > .debug.attackRange{
+	margin: -15px; /* (80 - 50) / 2 */
+	width: 80px;
+	height: 80px;
+	outline: solid 1px rgb(30, 255, 0);
+}
+#all-player > .entity.--overlap > .debug.attackRange{
+	outline: solid 1px rgb(255, 0, 0);
+}
+/* 实体被攻击 */
+#all-player > .entity.--victim{
+	transition: outline 0s;
+	outline: dashed 2px rgb(255, 51, 0);
+}
+
+
+
+
