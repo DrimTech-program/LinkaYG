@@ -101,31 +101,6 @@ new Promise(function(resolve, reject){
 
 	// $e.player.emit('name', '1123', '112');
 
-
-	// 连接服务器
-	$ws = new WebSocket('ws://127.0.0.1:3000');  // 确保这个地址和端口是正确的
-
-	// 连接成功
-	$ws.onopen = () => {
-		console.log('[WebSocket] 连接成功');
-		$c.wsOK = true;
-		
-		// 发送注册数据包
-		$ws.send(JSON.stringify({
-			type: 'login',
-			data: {
-				key: $c.player.key,
-				name: $c.player.name,
-			},
-		}));
-	};
-
-	// 连接断开
-	$ws.onclose = () => {
-		console.log('[WebSocket] 连接断开');
-		$c.wsOK = false;
-	};
-
 	resolve();
 })
 

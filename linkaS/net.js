@@ -103,4 +103,4 @@ wss.on('connection', (ws, req) => {
 });
 
 
-log.out('INFO', '[网络] WebSocket 启动完成, 正在监听 '+ wss.options.port +'端口');
+log.out('INFO', '[网络] WebSocket 启动完成, 正在监听 '+ wss.options.port +' 端口');
