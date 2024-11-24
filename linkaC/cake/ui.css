@@ -66,10 +66,10 @@ body{
 	/* z-index: 10; */
 	animation: 1s opacity_fadeIn;
 }
-/* !!实验性提升性能!! css实体剔除 */
+/* !!实验性提升性能!! css实体剔除
 #background > div > *{
-	/* content-visibility: auto; */
-}
+	content-visibility: auto;
+} */
 #background.-debug *{
 	outline: solid 1px rgb(0, 238, 255);
 }
