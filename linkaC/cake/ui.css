@@ -239,6 +239,8 @@ body{
 	outline: dashed 2px rgb(255, 51, 0);
 }
 
-
-
-
+/* NPC 对话选项 */
+#decision p.-join {
+    background: rgba(255, 255, 255, 0.2);
+    outline: 2px solid #272727;
+}
