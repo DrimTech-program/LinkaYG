@@ -10,7 +10,7 @@ db.add([
 				trigger_y: ['overlap'],
 				mode: ['all'],
 				program: [
-					{type: 'text', text: '林桛杨高开发者'},
+					{type: 'text', text: '开发类'},
 				],
 			},
 			{
@@ -62,7 +62,7 @@ db.add([
 				trigger_y: ['overlap'],
 				mode: ['all'],
 				program: [
-					{type: 'text', text: '校园平面图美化'},
+					{type: 'text', text: '设计类'},
 				],
 			},
 			{
