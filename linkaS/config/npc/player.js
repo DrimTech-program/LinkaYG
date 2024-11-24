@@ -2,7 +2,7 @@ db.add([
 	{
 		id: 'npc2',
 		type: 'npc',
-		name: '符 号 看 象 限 🙏',
+		name: 'Chillizu',
 		place_x: 500,
 		place_y: 200,
 		place: [500, 200, 0 , 32, 0],
@@ -31,9 +31,9 @@ db.add([
 								{id: '上下黑边', mode: true},
 							],
 						},
-						{type: 'text', text: '奇变偶不变'},
+						{type: 'text', text: 'Micky 坏！'},
 					],
-					{type: 'text', text: '符号看象限'},
+					{type: 'text', text: 'Micky 坏！！！'},
 					[
 						{type: 'text', sudo_trigger_x: false},
 						{
