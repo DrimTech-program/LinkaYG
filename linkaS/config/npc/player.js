@@ -33,7 +33,7 @@ db.add([
 						},
 						{type: 'text', text: 'Micky 坏！'},
 					],
-					{type: 'text', text: 'Micky 坏！！！'},
+					{type: 'text', text: 'Micky 坏坏坏！！！'},
 					[
 						{type: 'text', sudo_trigger_x: false},
 						{
