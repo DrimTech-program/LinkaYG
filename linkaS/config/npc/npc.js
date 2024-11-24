@@ -340,7 +340,7 @@ db.add([
 						},
 						{
 							type: 'program',
-							igger_x: `$t.npc_func.decision.id == 3`,
+							trigger_x: `$t.npc_func.decision.id == 3`,
 							program: [
 								{type: 'text', text: '哎呀'},
 							],
