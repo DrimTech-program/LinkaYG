@@ -52,6 +52,7 @@ function net_loop(){
 // 启动ws
 function start_ws(){
 	$ws = new WebSocket('wss://app.lpslps.com/linkayg/wss');
+	//$ws = new WebSocket('ws://127.0.0.1:2027');
 
 	// 已建立连接
 	$ws.onopen = function(e){
